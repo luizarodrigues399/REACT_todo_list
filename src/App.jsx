@@ -41,7 +41,6 @@ function App() {
   const [data, setData] = useState(dados)
   const [selectFilter, setSelectFilter] = useState("-")
   const [inputSearch, setInputSearch] = useState("")
-  const [orderBy, setOrderBy] = useState("ASC")
 
   const addTodo = (todo, select) => {
     const newTodo = [ 
@@ -57,45 +56,54 @@ function App() {
     setData(newTodo);
   }
 
+  /* [...data] = para evitar efeitos colaterais tentando modificar o array original (o original é const 
+   então não poderia) */
+
   const removeTodo = (id) =>{
 
-    const newTodoFiltered = data.filter((dado)=> dado.id != id)
+    const newTodoFiltered = [...data].filter((dado)=> dado.id != id)
 
     setData(newTodoFiltered)
   }
 
   const completeTodo = (id) =>{
-    const newTodoComplete = data.map(
+    const newTodoComplete = [...data].map(
       (dado) => dado.id == id ? {... dado, isCompleted : !dado.isCompleted } : dado
     );
 
     setData(newTodoComplete)
   }
 
-  let sorted = data.sort((dado1, dado2) => (
-    dado1.text.localeCompare(dado2.text)
-  ));
+  const sorted = (text) => {
 
-  if (orderBy == "DESC"){
-    sorted = sorted.reverse();
+    const dataSorted = [...data].sort((dado1, dado2) => (
+
+      text == "ASC" ? 
+
+      dado1.text.localeCompare(dado2.text) : 
+
+      dado2.text.localeCompare(dado1.text)
+    ));
+
+    setData(dataSorted)
   }
 
   return (
       <div className={style.container}>
         <h1>Lista de Tarefas</h1>
 
-        <Search inputSearch={inputSearch} setInputSearch={setInputSearch}/>
+        <Search setInputSearch={setInputSearch}/>
 
         <hr/>
 
         <Filter selectFilter={selectFilter} 
                 setSelectFilter={setSelectFilter} 
-                setOrderBy = {setOrderBy}/>
+                sorted = {sorted}/>
 
         <hr/>
 
           {
-           sorted.filter((dado)=>(
+           data.filter((dado)=>(
 
               selectFilter == 'incompleto' ? (!dado.isCompleted ? dado : null) : 
               selectFilter == 'completo' ? (dado.isCompleted ? dado : null) : dado

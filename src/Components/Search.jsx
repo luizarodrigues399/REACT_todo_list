@@ -1,6 +1,6 @@
 import Input from './Layout/Input.jsx'
 
-const Search = ({inputSearch, setInputSearch}) =>{
+const Search = ({setInputSearch}) =>{
     return (
         <div>
             <h2>Pesquisar:</h2>

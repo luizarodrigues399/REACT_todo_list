@@ -3,7 +3,7 @@ import style from './Filter.module.css'
 import Select from './Layout/Select'
 import Button from './Layout/Button'
 
-const Filter = ({selectFilter, setSelectFilter, setOrderBy}) =>{
+const Filter = ({selectFilter, setSelectFilter, sorted}) =>{
     
     const selectOptions = [{
         id: 'todos',
@@ -37,12 +37,10 @@ const Filter = ({selectFilter, setSelectFilter, setOrderBy}) =>{
                     <p>Ordem Alfabetica:</p>
 
                     <Button type='button' text='ASC' 
-                            classes="violet_button" 
-                            setOrderBy={setOrderBy}   />
+                            classes="violet_button" sorted = {sorted}/>
 
                     <Button type='button' text='DESC' 
-                        classes="violet_button" 
-                        setOrderBy={setOrderBy}  />
+                        classes="violet_button" sorted = {sorted}/>
                 </div>
             </div>
 

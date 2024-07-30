@@ -1,6 +1,6 @@
 import style from './Button.module.css'
 
-const Button = ({type, text, classes, removeTodo, completeTodo, setOrderBy, id}) =>{
+const Button = ({type, text, classes, removeTodo, completeTodo, sorted, id}) =>{
 
     const final_classes = (classes.split(' ').map((classe) => style[classe])).join(' ');
 
@@ -13,7 +13,7 @@ const Button = ({type, text, classes, removeTodo, completeTodo, setOrderBy, id})
 
                 completeTodo ? completeTodo(id) : null; 
 
-                setOrderBy ? setOrderBy(text) : null;
+                sorted ? sorted(text) : null;
             } }
 
             className={ `${final_classes} ${style.button}` }>
