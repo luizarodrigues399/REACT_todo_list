@@ -1,0 +1,33 @@
+.button{
+    padding: 5px 10px;
+    opacity: 0.7;
+    cursor: pointer;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    margin: 0 .5rem;
+}
+
+.red_button{
+    background-color: red;
+}
+
+.green_button{
+    background-color: green;
+}
+
+.violet_button{
+    background-color: blueviolet;
+}
+
+.btn_big{
+    font-size: large;
+}
+
+.text_center{
+    text-align: center;
+}
+
+.green_button:hover, .red_button:hover, .violet_button:hover{
+    opacity: 1;
+}
